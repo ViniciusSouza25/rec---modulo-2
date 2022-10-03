@@ -1,54 +1,54 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>curriculo</title>
-    <link rel="stylesheet" href="/src/css/index.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <SCript>alert("bem vindo ao meu curriculo.")</SCript>
+    <link rel="stylesheet" href="/css/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      alert("bem vindo ao meu curriculo.");
+    </script>
     <title>Curriculo</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <img id="foto" src="/assets/img/Vinicius.jpg" alt="Vinicius">
-        <h1>Vinicius Souza</h1>
-        
+      <img id="foto" src="/assets/img/Vinicius.jpg" alt="Vinicius" />
+      <h1>Vinicius Souza</h1>
     </header>
     <div id="content">
-        <div id="textos">
-            <h2 class="titulos">Cursos</h2>
-            <spam>
-                <p>curso livre de logica de programação - SENAC</p>
-            </spam>
-            <spam>
-                <p>curso técnico em informatica - SENAC</p>
-            </spam>
-            <spam>
-                <p>curso livre de javascript - SENAC </p>
-            </spam>
-        </div>
-        <div>
-        </div>
-
-       
+      <div id="textos"></div>
     </div>
     <footer>
-        <div>
-            
-                    <h5>todos direitos reservados</h5>
-                    
-                    
-           
-        </div>
+      <div>
+        <h5>todos direitos reservados</h5>
+      </div>
     </footer>
 
-    
-
     <script>
-        $('h2').fadeOut('2000').fadeIn('2000')
-</script>
-</body>
+      $("h2").fadeOut("2000").fadeIn("2000");
+
+      window.onload = () => {
+        $.get("/textos", (data) => {
+          $("#textos").html(
+            data?.map?.(
+              (d) => `
+                    <h2 class="titulos">${d?.titulo}</h2>
+                    <span>${d?.texto}</span>
+                 `
+            )
+          );
+        });
+      };
+    </script>
+  </body>
 </html>
